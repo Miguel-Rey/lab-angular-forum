@@ -1,0 +1,7 @@
+<h1>Threads</h1>
+<a *ngIf="SessionService.user" [routerLink]="['/new']" href="#">New</a>
+
+<div class="thread" *ngFor="let thread of threads" [routerLink]="['/singleThread',thread._id]">
+  <h4>{{thread.title}}</h4>
+  <p>By <b>{{thread._author.username}}</b> on <i>{{thread.date | date}}</i></p>
+</div>

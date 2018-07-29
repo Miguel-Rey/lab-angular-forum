@@ -1,0 +1,20 @@
+<div *ngIf="singleThread" class="container">
+  <h1>{{singleThread.title}}</h1>
+  <p>By <b>{{singleThread._author.username}}</b> on <i>{{singleThread.date | date}}</i></p>
+  <br>
+  
+  <p>{{singleThread.content}}</p>
+</div>
+<div>
+  <h3>Replies</h3>
+  <div *ngFor="let reply of replies">
+    <p><b>{{reply._author.username}}</b> on <i>{{reply.date | date}}</i></p>
+    <p>{{reply.content}}</p>
+  </div>
+</div>
+
+<form *ngIf="SessionService.user">
+  <h4>New reply</h4>
+  <textarea name="content" [(ngModel)]="content"></textarea>
+  <button (click)="newReply(content)">Submit</button>
+</form>

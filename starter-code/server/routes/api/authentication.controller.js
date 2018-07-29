@@ -4,6 +4,18 @@ const router   = express.Router();
 const User     = require('../../models/user.model');
 const bcrypt   = require('bcrypt');
 
+const login = (req, user) => {
+  return new Promise((resolve,reject) => {
+    req.login(user, err => {
+      if(err) {
+        reject(new Error('Something went wrong'))
+      }else{
+        resolve(user);
+      }
+    })
+  })
+}
+
 router.post("/login", (req, res, next) => {
   passport.authenticate('local', (err, user, info) =>  {
     if (err) { return next(err); }
@@ -22,7 +34,6 @@ router.post("/login", (req, res, next) => {
 });
 
 router.post("/signup", (req, res, next) => {
-  console.log(req.body)
   const { username, email, password } = req.body;
 
   if (!username || !password || !email) {
@@ -65,9 +76,10 @@ router.post("/signup", (req, res, next) => {
   });
 });
 
-router.post("/logout", function(req, res) {
+router.get('/logout', (req,res) => {
+  console.log('logout')
   req.logout();
-  res.status(200).json({ message: 'Success' });
+  res.status(200).json({message:'logged out'})
 });
 
 router.post("/loggedin", function(req, res) {

@@ -1,0 +1,6 @@
+<h2>New thread</h2>
+<label for="title">Title</label>
+<input type="text" name="tilte" [(ngModel)]="title">
+<label for="content">Content</label>
+<textarea name="content" [(ngModel)]="content"></textarea>
+<button (click)="newPost(title,content)">Create new thread</button>

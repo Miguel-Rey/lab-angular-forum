@@ -1,0 +1,9 @@
+.thread{
+  background: #ededed;
+  padding: 10px;
+}
+.thread:hover{
+  background: #d9d9d9;
+  transition: background-color 200ms ease-in-out;
+  cursor: pointer;
+}
